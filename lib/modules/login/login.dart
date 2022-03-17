@@ -4,6 +4,8 @@ import 'package:payflow_2/shared/themes/appImages.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
 import 'package:payflow_2/shared/widgets/loginButton/loginButton.dart';
 
+import 'loginController.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -12,6 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final controller = LoginController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -62,7 +65,7 @@ class _LoginState extends State<Login> {
                           const EdgeInsets.only(top: 30, left: 50, right: 50),
                       child: LoginButton(
                         onTap: () {
-                          print("E o clicas");
+                          controller.googleSignIn(context);
                         },
                       ),
                     )
