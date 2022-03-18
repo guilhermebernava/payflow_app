@@ -27,7 +27,6 @@ class LoginController {
       authController.setUser(context, user);
       print(response);
     } catch (error) {
-      authController.setUser(context, null);
       print(error);
     }
   }

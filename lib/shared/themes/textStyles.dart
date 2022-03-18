@@ -11,7 +11,7 @@ class TextStyles {
   static final titleRegular = GoogleFonts.lexendDeca(
     fontSize: 20,
     fontWeight: FontWeight.w400,
-    color: AppColor.heading,
+    color: AppColor.background,
   );
   static final titleBoldHeading = GoogleFonts.lexendDeca(
     fontSize: 20,
@@ -78,32 +78,32 @@ class TextStyles {
     fontWeight: FontWeight.w700,
     color: AppColor.background,
   );
-  static final captionBackground = GoogleFonts.lexendDeca(
+  static final captionBackground = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: AppColor.background,
   );
-  static final captionShape = GoogleFonts.lexendDeca(
+  static final captionShape = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: AppColor.shape,
   );
-  static final captionBody = GoogleFonts.lexendDeca(
+  static final captionBody = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: AppColor.body,
   );
-  static final captionBoldBackground = GoogleFonts.lexendDeca(
+  static final captionBoldBackground = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w600,
     color: AppColor.background,
   );
-  static final captionBoldShape = GoogleFonts.lexendDeca(
+  static final captionBoldShape = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w600,
     color: AppColor.shape,
   );
-  static final captionBoldBody = GoogleFonts.lexendDeca(
+  static final captionBoldBody = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w600,
     color: AppColor.body,
