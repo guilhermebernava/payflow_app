@@ -6,8 +6,15 @@ import 'package:payflow_2/shared/themes/textStyles.dart';
 class LoginButton extends StatelessWidget {
   //serve para quando clicar no botao algo ocorrer
   final VoidCallback onTap;
+  final String textButton;
+  final String image;
 
-  const LoginButton({Key? key, required this.onTap}) : super(key: key);
+  const LoginButton(
+      {Key? key,
+      required this.onTap,
+      required this.textButton,
+      required this.image})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,7 @@ class LoginButton extends StatelessWidget {
               flex: 1,
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Image.asset(AppImages.google),
+                Image.asset(image),
                 const SizedBox(
                   width: 16,
                 ),
@@ -39,7 +46,7 @@ class LoginButton extends StatelessWidget {
             flex: 4,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
-                "Entrar com Google",
+                textButton,
                 style: TextStyles.buttonGray,
               )
             ]),

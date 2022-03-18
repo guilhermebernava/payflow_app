@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
 import 'package:payflow_2/shared/themes/appImages.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
@@ -65,8 +64,10 @@ class _LoginState extends State<Login> {
                       padding:
                           const EdgeInsets.only(top: 30, left: 50, right: 50),
                       child: LoginButton(
-                        onTap: () {
-                          controller.googleSignIn(context);
+                        textButton: "Entrar com o Google",
+                        image: AppImages.google,
+                        onTap: () async {
+                          await controller.googleSignIn(context);
                         },
                       ),
                     )

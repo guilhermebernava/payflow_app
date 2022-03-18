@@ -5,6 +5,7 @@ import 'package:payflow_2/shared/themes/appColor.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
 
 import '../../shared/Models/userModel.dart';
+import '../login/loginController.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final auth = AuthController();
   final controller = HomeController();
+  final loginController = LoginController();
   final pages = [
     Container(
       color: Colors.red,
@@ -28,6 +30,22 @@ class _HomeState extends State<Home> {
     return Scaffold(
       //precisa passar o PREFERREDSIZE pois appbar nn recebe WIDGET
       //diretamente, mas o PREFERRED aceita CHILD.
+      drawer: new Drawer(
+          child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 500),
+            child: Center(
+                child: TextButton(
+              onPressed: (() async => {await loginController.SignOut(context)}),
+              child: Text(
+                "Logout",
+                style: TextStyles.titleHome,
+              ),
+            )),
+          )
+        ],
+      )),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(152),
         child: Container(
@@ -54,12 +72,19 @@ class _HomeState extends State<Home> {
               style: TextStyles.captionShape,
             ),
             //FINAL DO COMPONENTE imagem do usuario
-            trailing: Container(
-              height: size.height,
-              width: size.width * 0.15,
-              decoration: BoxDecoration(
-                  color: Colors.black, borderRadius: BorderRadius.circular(5)),
-            ),
+            //serve para passar contexto para os WIDGETS
+            trailing: Builder(builder: (context) {
+              return GestureDetector(
+                onTap: () => {Scaffold.of(context).openDrawer()},
+                child: Container(
+                  height: size.height,
+                  width: size.width * 0.15,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(5)),
+                ),
+              );
+            }),
           )),
         ),
       ),
