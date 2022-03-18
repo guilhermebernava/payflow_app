@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../modules/home/home.dart';
+import '../../modules/login/login.dart';
 import '../Models/userModel.dart';
 
 class AuthController {
@@ -11,9 +13,12 @@ class AuthController {
     if (user != null) {
       saveUser(user);
       _user = user;
-      Navigator.pushReplacementNamed(context, "/home");
+      //NAVIGATOR serve para DIRECIONAR O USUARIO para HOME
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     } else {
-      Navigator.pushReplacementNamed(context, "/login");
+      //NAVIGATOR serve para DIRECIONAR O USUARIO para LOGIN
+      //caso ele não esteja LOGADO
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
     }
   }
 

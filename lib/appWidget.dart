@@ -12,8 +12,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       title: 'Pay Flow',
       theme: ThemeData(primaryColor: AppColor.primary),
-      initialRoute: "/splash",
-      home: Home(),
+      home: Login(),
     );
   }
 }
