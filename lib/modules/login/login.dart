@@ -66,8 +66,8 @@ class _LoginState extends State<Login> {
                       child: LoginButton(
                         textButton: "Entrar com o Google",
                         image: AppImages.google,
-                        onTap: () async {
-                          await controller.googleSignIn(context);
+                        onTap: () {
+                          controller.googleSignIn(context);
                         },
                       ),
                     )

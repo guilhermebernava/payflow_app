@@ -18,18 +18,14 @@ class LoginController {
     );
     try {
       //vai logar no google
-      var isSigned = await _googleSignIn.isSignedIn();
-      if (!isSigned) {
-        final response = await _googleSignIn.signIn();
-        final user = UserModel(
-          name: response!.displayName,
-          photoURL: response.photoUrl,
-        );
-        //vai colocar as USERS dentro de uma variavel
-        authController.setUser(context, user);
-        print(response);
-      }
-
+      final response = await _googleSignIn.signIn();
+      final user = UserModel(
+        name: response!.displayName,
+        photoURL: response.photoUrl,
+      );
+      //vai colocar as USERS dentro de uma variavel
+      authController.setUser(context, user);
+      print(response);
       //vai pegar as informações do usuarios
 
     } catch (error) {
@@ -40,10 +36,13 @@ class LoginController {
   Future<void> SignOut(BuildContext context) async {
     GoogleSignIn _googleSignIn = GoogleSignIn();
     //vai logar no google
-    final response = await _googleSignIn.signOut();
-    final instance = await SharedPreferences.getInstance();
-    instance.clear();
-    authController.setUser(context, null);
-    print(response);
+    try {
+      await _googleSignIn.signOut();
+      await _googleSignIn.disconnect();
+      final instance = await SharedPreferences.getInstance();
+      instance.clear();
+    } catch (error) {
+      print(error);
+    }
   }
 }
