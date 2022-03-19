@@ -9,7 +9,7 @@ class TextStyles {
     color: AppColor.heading,
   );
   static final titleRegular = GoogleFonts.lexendDeca(
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: FontWeight.w400,
     color: AppColor.background,
   );
@@ -74,7 +74,7 @@ class TextStyles {
     color: AppColor.grey,
   );
   static final buttonBoldBackground = GoogleFonts.inter(
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: FontWeight.w700,
     color: AppColor.background,
   );
@@ -84,7 +84,7 @@ class TextStyles {
     color: AppColor.background,
   );
   static final captionShape = GoogleFonts.inter(
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: FontWeight.w400,
     color: AppColor.shape,
   );

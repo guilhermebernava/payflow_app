@@ -12,7 +12,8 @@ class AuthController {
       saveUser(user);
       _user = user;
       //NAVIGATOR serve para DIRECIONAR O USUARIO para HOME
-      Navigator.pushReplacementNamed(context, "/home");
+      //arguments manda o USER atraves da ROTA
+      Navigator.pushReplacementNamed(context, "/home", arguments: user);
     } else {
       //NAVIGATOR serve para DIRECIONAR O USUARIO para LOGIN
       //caso ele não esteja LOGADO

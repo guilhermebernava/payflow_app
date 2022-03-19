@@ -17,7 +17,9 @@ class AppWidget extends StatelessWidget {
       initialRoute: "/splash",
       //ADICIONA ROTAS NOMEADAS PARA AS TELAS
       routes: {
-        "/home": (context) => Home(),
+        "/home": (context) => Home(
+              user: ModalRoute.of(context)!.settings.arguments as UserModel,
+            ),
         "/splash": (context) => Splash(),
         "/login": (context) => Login()
       },

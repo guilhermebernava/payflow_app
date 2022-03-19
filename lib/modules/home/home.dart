@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:payflow_2/modules/home/homeController.dart';
 import 'package:payflow_2/shared/Auth/authController.dart';
+import 'package:payflow_2/shared/Models/userModel.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../login/loginController.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final UserModel user;
+  const Home({Key? key, required this.user}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -22,6 +25,7 @@ class _HomeState extends State<Home> {
     ),
     Container(color: Colors.blue),
   ];
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -35,7 +39,7 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.only(top: 500),
             child: Center(
                 child: TextButton(
-              onPressed: (() async => {await loginController.SignOut(context)}),
+              onPressed: (() => print('SIGN OUT')),
               child: Text(
                 "Logout",
                 style: TextStyles.titleHome,
@@ -62,7 +66,8 @@ class _HomeState extends State<Home> {
                 style: TextStyles.titleRegular,
                 children: [
                   TextSpan(
-                      text: "Guilherme", style: TextStyles.buttonBoldBackground)
+                      text: "${widget.user.name}",
+                      style: TextStyles.buttonBoldBackground)
                 ])),
             //TITULO QUE VAI EMBAIXO DA TEXTO PRINCIPAL
             subtitle: Text(
@@ -78,6 +83,8 @@ class _HomeState extends State<Home> {
                   height: size.height,
                   width: size.width * 0.15,
                   decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(widget.user.photoURL!)),
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(5)),
                 ),
