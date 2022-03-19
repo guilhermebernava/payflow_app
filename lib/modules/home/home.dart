@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.only(top: 500),
             child: Center(
                 child: TextButton(
-              onPressed: (() => print('SIGN OUT')),
+              onPressed: (() => loginController.SignOut(context)),
               child: Text(
                 "Logout",
                 style: TextStyles.titleHome,

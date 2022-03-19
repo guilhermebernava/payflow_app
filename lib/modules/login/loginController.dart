@@ -38,9 +38,9 @@ class LoginController {
     //vai logar no google
     try {
       await _googleSignIn.signOut();
-      await _googleSignIn.disconnect();
       final instance = await SharedPreferences.getInstance();
-      instance.clear();
+      instance.remove("user");
+      Navigator.pushReplacementNamed(context, "/login");
     } catch (error) {
       print(error);
     }
