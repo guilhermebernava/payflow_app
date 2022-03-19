@@ -4,7 +4,6 @@ import 'package:payflow_2/shared/Auth/authController.dart';
 import 'package:payflow_2/shared/Models/userModel.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../login/loginController.dart';
 
 class Home extends StatefulWidget {

@@ -33,7 +33,10 @@ class LoginButton extends StatelessWidget {
               flex: 1,
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Image.asset(image),
+                Padding(
+                  padding: const EdgeInsets.only(left: 13),
+                  child: Image.asset(image),
+                ),
                 const SizedBox(
                   width: 16,
                 ),
