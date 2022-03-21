@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
             //Botao para usar o ONTAP
             GestureDetector(
               onTap: () {
-                print("Clicou");
+                Navigator.pushNamed(context, "/barCodeScanner");
               },
               child: Container(
                 width: size.width * 0.18,
