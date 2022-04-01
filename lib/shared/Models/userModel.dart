@@ -1,4 +1,5 @@
 import 'dart:convert';
+//classe feita para utilizar como VM para pegar dados do GOOGLE
 
 class UserModel {
   final String? name;

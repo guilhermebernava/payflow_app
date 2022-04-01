@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//define as cores do app por meio de váriaveis
 class AppColor {
   static final primary = Color(0xFFFF941A);
   static final grey = Color(0xFF585666);

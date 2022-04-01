@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
 
+//definindo padrão de TEXT STYLES a ser utilizada dentro código
+//deixando tudo pré feito
+
 class TextStyles {
   static final titleHome = GoogleFonts.lexendDeca(
     fontSize: 32,

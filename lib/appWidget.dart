@@ -20,7 +20,9 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //nome do APP
       title: 'Pay Flow',
+      //Tema padrão que o app sempre irá usar
       theme: ThemeData(
           primarySwatch: Colors.orange, primaryColor: AppColor.primary),
       //TELA INICIAL
