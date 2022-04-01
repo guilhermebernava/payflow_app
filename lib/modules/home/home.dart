@@ -1,4 +1,6 @@
+import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
+import 'package:payflow_2/modules/boletosPage/boletosPage.dart';
 import 'package:payflow_2/modules/home/homeController.dart';
 import 'package:payflow_2/shared/Auth/authController.dart';
 import 'package:payflow_2/shared/Models/userModel.dart';
@@ -8,7 +10,7 @@ import '../login/loginController.dart';
 
 class Home extends StatefulWidget {
   final UserModel user;
-  const Home({Key? key, required this.user}) : super(key: key);
+  Home({Key? key, required this.user}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -19,8 +21,8 @@ class _HomeState extends State<Home> {
   final controller = HomeController();
   final loginController = LoginController();
   final pages = [
-    Container(
-      color: Colors.red,
+    BoletoPage(
+      key: UniqueKey(),
     ),
     Container(color: Colors.blue),
   ];
@@ -39,9 +41,15 @@ class _HomeState extends State<Home> {
             child: Center(
                 child: TextButton(
               onPressed: (() => loginController.SignOut(context)),
-              child: Text(
-                "Logout",
-                style: TextStyles.titleHome,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 80),
+                child: AnimatedCard(
+                  direction: AnimatedCardDirection.bottom,
+                  child: Text(
+                    "Logout",
+                    style: TextStyles.titleHome,
+                  ),
+                ),
               ),
             )),
           )
@@ -93,6 +101,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: pages[controller.currentPage],
+
       //Barra de navegação inferior
       //PADDING serve para adicionar espaçamento entre CONTAINERS
       bottomNavigationBar: Padding(
@@ -111,12 +120,14 @@ class _HomeState extends State<Home> {
                 },
                 icon: Icon(
                   Icons.home,
-                  color: AppColor.primary,
+                  color: controller.currentPage == 0
+                      ? AppColor.primary
+                      : AppColor.body,
                 )),
             //Botao para usar o ONTAP
             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, "/barCodeScanner");
+              onTap: () async {
+                await Navigator.pushNamed(context, "/barCodeScanner");
               },
               child: Container(
                 width: size.width * 0.18,
@@ -139,7 +150,9 @@ class _HomeState extends State<Home> {
                 },
                 icon: Icon(
                   Icons.description_outlined,
-                  color: AppColor.body,
+                  color: controller.currentPage == 1
+                      ? AppColor.primary
+                      : AppColor.body,
                 ))
           ]),
         ),

@@ -8,32 +8,38 @@ class SetLabelButtons extends StatelessWidget {
   final String secundary;
   final VoidCallback primaryOnPressed;
   final VoidCallback secundaryOnPressed;
+  final bool secundaryColor;
+  final bool primaryColor;
 
-  const SetLabelButtons(
-      {Key? key,
-      required this.primary,
-      required this.secundary,
-      required this.primaryOnPressed,
-      required this.secundaryOnPressed})
-      : super(key: key);
+  const SetLabelButtons({
+    Key? key,
+    required this.primary,
+    required this.secundary,
+    required this.primaryOnPressed,
+    required this.secundaryOnPressed,
+    this.secundaryColor = false,
+    this.primaryColor = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 56,
-      child: Row(
-        children: [
-          Expanded(
-            child: LabelButton(
-              label: primary,
-              onPressed: primaryOnPressed,
+      child: Container(
+        child: Row(
+          children: [
+            Expanded(
+              child: LabelButton(
+                label: primary,
+                onPressed: primaryOnPressed,
+              ),
             ),
-          ),
-          DividerVertical(),
-          Expanded(
-              child:
-                  LabelButton(label: secundary, onPressed: secundaryOnPressed))
-        ],
+            DividerVertical(),
+            Expanded(
+                child: LabelButton(
+                    label: secundary, onPressed: secundaryOnPressed))
+          ],
+        ),
       ),
     );
   }
