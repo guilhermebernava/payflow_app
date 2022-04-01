@@ -144,7 +144,7 @@ class _InsertBoletoState extends State<InsertBoleto> {
               backgroundColor: AppColor.background,
               autoCloseDuration: Duration(seconds: 5),
             );
-            Navigator.pop(context, _InsertBoletoState());
+            Navigator.pop(context);
           }),
     );
   }
