@@ -1,8 +1,11 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:payflow_2/modules/insertBoleto/insertBoleto.dart';
 import 'package:payflow_2/shared/Models/boletoModel.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
+import 'package:payflow_2/shared/widgets/boletoEdit/boletoEdit.dart';
+import 'package:payflow_2/shared/widgets/deleteModal/deleteModal.dart';
 import '../boletoModal/boletoModal.dart';
 import '../crudButton/crudButton.dart';
 
@@ -38,6 +41,24 @@ class BoletoWidget extends StatelessWidget {
                     builder: (builder) {
                       return BoletoModal(modal: model);
                     });
+                return;
+              },
+              onDelete: () {
+                Navigator.pop(context, true);
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (builder) {
+                      return DeleteModal(modal: model);
+                    });
+                return;
+              },
+              onEdit: () {
+                Navigator.pop(context, true);
+                // showCupertinoModalPopup(
+                //     context: context,
+                //     builder: (builder) {
+                //       return BoletoEdit(model: model);
+                //     });
                 return;
               },
             )));

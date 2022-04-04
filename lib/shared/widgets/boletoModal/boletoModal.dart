@@ -1,7 +1,5 @@
 import 'package:animated_card/animated_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:payflow_2/shared/widgets/labelButton/labelButton.dart';
 import '../../Models/boletoModel.dart';
 import '../../themes/appColor.dart';
 import '../../themes/textStyles.dart';

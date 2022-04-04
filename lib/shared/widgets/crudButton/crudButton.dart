@@ -3,7 +3,14 @@ import 'package:payflow_2/shared/themes/textStyles.dart';
 
 class CrudButton extends StatelessWidget {
   final void Function() onView;
-  const CrudButton({Key? key, required this.onView}) : super(key: key);
+  final void Function() onDelete;
+  final void Function() onEdit;
+  const CrudButton(
+      {Key? key,
+      required this.onView,
+      required this.onDelete,
+      required this.onEdit})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +39,7 @@ class CrudButton extends StatelessWidget {
                     child: Icon(Icons.edit),
                   ),
                   SimpleDialogOption(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: onEdit,
                     child: Text('Editar'),
                   )
                 ]),
@@ -48,9 +53,7 @@ class CrudButton extends StatelessWidget {
                     child: Icon(Icons.delete),
                   ),
                   SimpleDialogOption(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: onDelete,
                     child: Text('Deletar'),
                   )
                 ]),
