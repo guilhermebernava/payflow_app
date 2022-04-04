@@ -1,6 +1,7 @@
-import 'dart:math';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:payflow_2/shared/themes/appColor.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import '../../shared/Models/boletoModel.dart';
 import '../../shared/themes/textStyles.dart';
 import '../../shared/widgets/boletoList/boletoListController.dart';
 
@@ -14,67 +15,76 @@ class ResumePage extends StatefulWidget {
 
 class _ResumePageState extends State<ResumePage> {
   final controller = BoletoListController();
-
-  final List<FlSpot> dummyData1 = List.generate(2, (index) {
-    return FlSpot(index.toDouble(), index * Random().nextDouble());
-  });
-
-  // This will be used to draw the orange line
-  final List<FlSpot> dummyData2 = List.generate(5, (index) {
-    return FlSpot(index.toDouble(), index * Random().nextDouble());
-  });
+  final data = Data();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Text(
-          "Boletos",
-          textAlign: TextAlign.center,
-          style: TextStyles.titleHome,
-        ),
-        SafeArea(
-          child: Center(
-            child: Container(
-              width: 330,
-              height: 330,
-              child: LineChart(
-                LineChartData(
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                  gridData: FlGridData(
-                    show: false, // to remove grids
-                    horizontalInterval: 1.6,
-                  ),
-                  titlesData: FlTitlesData(
-                    bottomTitles: AxisTitles(drawBehindEverything: false),
-                    topTitles: AxisTitles(drawBehindEverything: false),
-                  ),
-                  lineBarsData: [
-                    // The red line
-                    LineChartBarData(
-                      spots: dummyData1,
-                      isCurved: true,
-                      barWidth: 1,
-                      color: Colors.red,
-                    ),
-                    // The orange line
-                    LineChartBarData(
-                      spots: dummyData2,
-                      isCurved: true,
-                      barWidth: 1,
-                      color: Colors.orange,
-                    ),
-                  ],
-                ),
-                swapAnimationCurve: Curves.decelerate,
-                swapAnimationDuration: Duration(seconds: 10),
-              ),
+    return ValueListenableBuilder<List<BoletoModel>>(
+      valueListenable: controller.boletosNotifier,
+      builder: (_, boletos, __) => Padding(
+        padding: EdgeInsets.only(right: 30, top: 10, left: 10),
+        child: SfCartesianChart(
+            primaryXAxis: CategoryAxis(
+                visibleMaximum: 3,
+                autoScrollingMode: AutoScrollingMode.end,
+                labelStyle: TextStyles.titleListTile,
+                borderColor: AppColor.stroke),
+            enableAxisAnimation: true,
+            enableMultiSelection: true,
+            zoomPanBehavior: ZoomPanBehavior(
+              enablePinching: false,
+              zoomMode: ZoomMode.xy,
+              enablePanning: true,
             ),
-          ),
-        ),
-      ]),
+            // Chart title
+            title: ChartTitle(text: 'Boletos', textStyle: TextStyles.titleHome),
+            // Enable legend
+            legend: Legend(isVisible: false),
+            // Enable tooltip
+            tooltipBehavior: TooltipBehavior(
+                enable: true, activationMode: ActivationMode.singleTap),
+            series: <ChartSeries<_SalesData, String>>[
+              BarSeries<_SalesData, String>(
+                  color: AppColor.primary,
+                  dataSource: data.list,
+                  animationDelay: 0.1,
+                  enableTooltip: true,
+                  xAxisName: "Valores",
+                  yAxisName: "Boletos",
+                  spacing: 0.5,
+                  legendItemText: "teste",
+                  xValueMapper: (_SalesData sales, _) => sales.name,
+                  yValueMapper: (_SalesData sales, _) => sales.sales,
+                  name: 'Valor Gasto',
+                  // Enable data label
+                  dataLabelSettings: DataLabelSettings(isVisible: true))
+            ]),
+      ),
     );
+  }
+}
+
+class _SalesData {
+  _SalesData(this.name, this.sales);
+
+  final String name;
+  final double sales;
+}
+
+class Data {
+  final controllerList = BoletoListController();
+
+  Data() {
+    getData();
+  }
+
+  List<_SalesData> list = <_SalesData>[];
+
+  Future<void> getData() async {
+    await controllerList.getBoletos();
+
+    controllerList.boletos.forEach((element) {
+      list.add(_SalesData(element.name!, element.value!));
+    });
   }
 }
