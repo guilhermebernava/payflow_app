@@ -2,6 +2,7 @@ import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 import 'package:payflow_2/modules/boletosPage/boletosPage.dart';
 import 'package:payflow_2/modules/home/homeController.dart';
+import 'package:payflow_2/modules/resumePage/resumePage.dart';
 import 'package:payflow_2/shared/Auth/authController.dart';
 import 'package:payflow_2/shared/Models/userModel.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
@@ -24,7 +25,9 @@ class _HomeState extends State<Home> {
     BoletoPage(
       key: UniqueKey(),
     ),
-    Container(color: Colors.blue),
+    ResumePage(
+      key: UniqueKey(),
+    )
   ];
 
   @override

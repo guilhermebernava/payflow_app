@@ -1,10 +1,8 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:payflow_2/modules/insertBoleto/insertBoleto.dart';
 import 'package:payflow_2/shared/Models/boletoModel.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
-import 'package:payflow_2/shared/widgets/boletoEdit/boletoEdit.dart';
 import 'package:payflow_2/shared/widgets/deleteModal/deleteModal.dart';
 import '../boletoModal/boletoModal.dart';
 import '../crudButton/crudButton.dart';
