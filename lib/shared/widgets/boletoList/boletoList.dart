@@ -27,7 +27,11 @@ class _BoletoListState extends State<BoletoList> {
           //boletos
           // os parametros são, CONTEXT, Variavel sendo Observada e CHILD.
           builder: (_, boletos, __) => Column(
-                children: boletos.map((e) => BoletoWidget(model: e)).toList(),
+                children: boletos
+                    .map((e) => BoletoWidget(model: e))
+                    .toList()
+                    .reversed
+                    .toList(),
               )),
     );
   }
