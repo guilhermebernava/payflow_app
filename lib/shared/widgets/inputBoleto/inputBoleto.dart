@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
-
 import '../../themes/textStyles.dart';
 
 class InputBoleto extends StatelessWidget {
   final String placeHolder;
   final IconData icon;
-  final String? initialValue;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final bool? isNumber;
   final void Function(String value) onChanged;
 
   const InputBoleto(
       {Key? key,
       required this.placeHolder,
       required this.icon,
-      this.initialValue,
       this.validator,
       this.controller,
+      this.isNumber = false,
       required this.onChanged})
       : super(key: key);
 
@@ -29,7 +28,6 @@ class InputBoleto extends StatelessWidget {
         children: [
           TextFormField(
             controller: controller,
-            initialValue: initialValue,
             validator: validator,
             //onChanged é a function que te da acesso ao dado que está
             //sendo escrito pelo usuario, e nesse caso estamos passando
@@ -54,6 +52,9 @@ class InputBoleto extends StatelessWidget {
                     )
                   ],
                 )),
+            //define o TIPO de TECLADO que vai aparecer para o usuario
+            keyboardType:
+                isNumber == true ? TextInputType.number : TextInputType.text,
           ),
           Divider(
             height: 1,

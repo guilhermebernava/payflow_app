@@ -30,7 +30,6 @@ class _BoletoEditState extends State<BoletoEdit> {
 
   @override
   Widget build(BuildContext context) {
-    controller.oldModel = widget.model;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
@@ -60,7 +59,6 @@ class _BoletoEditState extends State<BoletoEdit> {
                   child: Column(
                     children: [
                       InputBoleto(
-                        initialValue: "${widget.model.name}",
                         placeHolder: "Nome do Boleto",
                         icon: Icons.description_outlined,
                         validator: controller.validateName,
@@ -69,7 +67,6 @@ class _BoletoEditState extends State<BoletoEdit> {
                         },
                       ),
                       InputBoleto(
-                        initialValue: "${widget.model.dueDate}",
                         controller: dateValidator,
                         placeHolder: "Vencimento",
                         validator: controller.validateVencimento,
@@ -79,7 +76,6 @@ class _BoletoEditState extends State<BoletoEdit> {
                         },
                       ),
                       InputBoleto(
-                        initialValue: "${widget.model.value}",
                         controller: moneyValidator,
                         placeHolder: "Valor",
                         validator: (_) => controller
@@ -91,7 +87,6 @@ class _BoletoEditState extends State<BoletoEdit> {
                         },
                       ),
                       InputBoleto(
-                        initialValue: "${widget.model.barcode}",
                         controller: barcodeValidator,
                         placeHolder: "Código",
                         validator: controller.validateCodigo,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:payflow_2/shared/Models/boletoModel.dart';
 import 'package:payflow_2/shared/widgets/boletoList/boletoList.dart';
 import 'package:payflow_2/shared/widgets/boletoList/boletoListController.dart';
-
 import '../../shared/themes/appColor.dart';
 import '../../shared/themes/textStyles.dart';
 
@@ -15,12 +14,6 @@ class BoletoPage extends StatefulWidget {
 
 class _BoletoPageState extends State<BoletoPage> {
   final controller = BoletoListController();
-
-  @override
-  void initState() {
-    setState(() {});
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +32,8 @@ class _BoletoPageState extends State<BoletoPage> {
                     style: TextStyles.titleBoldHeading,
                     textAlign: TextAlign.center,
                   ),
+                  //toda vez que o valor de BOLETOS_NOTIFIER for alterado
+                  // ele vai gerar esse build do WIDGET
                   ValueListenableBuilder<List<BoletoModel>>(
                       valueListenable: controller.boletosNotifier,
                       builder: (_, boletos, __) => Text(

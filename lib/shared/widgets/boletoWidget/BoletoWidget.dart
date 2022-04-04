@@ -1,6 +1,7 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:payflow_2/modules/insertBoleto/insertBoleto.dart';
 import 'package:payflow_2/shared/Models/boletoModel.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
 import 'package:payflow_2/shared/widgets/deleteModal/deleteModal.dart';
@@ -50,13 +51,19 @@ class BoletoWidget extends StatelessWidget {
                     });
                 return;
               },
-              onEdit: () {
+              onEdit: () async {
                 Navigator.pop(context, true);
-                // showCupertinoModalPopup(
-                //     context: context,
-                //     builder: (builder) {
-                //       return BoletoEdit(model: model);
-                //     });
+                final res = await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                  return InsertBoleto(
+                    barcode: model.barcode,
+                    nome: model.name,
+                    valor: model.value.toString(),
+                    vencimento: model.dueDate,
+                  );
+                }));
+
+                print(res);
                 return;
               },
             )));

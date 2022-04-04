@@ -18,8 +18,14 @@ class _BoletoListState extends State<BoletoList> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+      //toda vez qye o boletoNotifier for alterado ele vai atualizar
+      //toda vez que atualizar ele vai rodar o builder.
       child: ValueListenableBuilder<List<BoletoModel>>(
+          //aqui vai ser onde vai decidir qual variavel vai ser OBSERVADA
           valueListenable: widget.controller.boletosNotifier,
+          //builder vai gerar um WIDGET que vai gerar a lista com todos
+          //boletos
+          // os parametros são, CONTEXT, Variavel sendo Observada e CHILD.
           builder: (_, boletos, __) => Column(
                 children: boletos.map((e) => BoletoWidget(model: e)).toList(),
               )),

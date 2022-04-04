@@ -4,4 +4,8 @@ class HomeController {
   void setPage(int index) {
     currentPage = index;
   }
+
+  HomeController() {
+    setPage(0);
+  }
 }

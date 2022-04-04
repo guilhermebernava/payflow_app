@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
-
 import '../../shared/widgets/bottomSheet/bottomSheet.dart';
 import '../../shared/widgets/setLabelButtons/setLabelButtons.dart';
 import 'barCodeScanner_controller.dart';

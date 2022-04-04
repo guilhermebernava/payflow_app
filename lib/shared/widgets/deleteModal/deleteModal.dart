@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:payflow_2/shared/Models/boletoModel.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:payflow_2/shared/widgets/boletoList/boletoListController.dart';
+import 'package:payflow_2/shared/widgets/deleteModal/deleteModalController.dart';
+import '../../Methods/recoveryLogin.dart';
 import '../../themes/textStyles.dart';
 
 class DeleteModal extends StatefulWidget {
@@ -13,6 +14,10 @@ class DeleteModal extends StatefulWidget {
 }
 
 class _DeleteModalState extends State<DeleteModal> {
+  final recoverUser = RecoveryLogin();
+  final controllerList = BoletoListController();
+  final controller = DeleteModalController();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -41,13 +46,9 @@ class _DeleteModalState extends State<DeleteModal> {
                 textStyle:
                     TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             onPressed: () async {
-              final instance = await SharedPreferences.getInstance();
-              final boletos = instance.getStringList('boletos') ?? <String>[];
-
-              boletos.remove(widget.modal.toJson());
-              await instance.setStringList("boletos", boletos);
-              Navigator.pop(context);
-              setState(() {});
+              controller.onDelete(widget.modal);
+              final user = await recoverUser.recoveryUser(context);
+              recoverUser.backToHome(context, user);
             },
             child: Text(
               "Deletar",

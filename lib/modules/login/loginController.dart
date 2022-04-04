@@ -25,7 +25,6 @@ class LoginController {
       );
       //vai colocar as USERS dentro de uma variavel
       authController.setUser(context, user);
-      print(response);
       //vai pegar as informações do usuarios
 
     } catch (error) {

@@ -7,6 +7,8 @@ import 'package:payflow_2/shared/Auth/authController.dart';
 import 'package:payflow_2/shared/Models/userModel.dart';
 import 'package:payflow_2/shared/themes/appColor.dart';
 import 'package:payflow_2/shared/themes/textStyles.dart';
+import '../../shared/Models/boletoModel.dart';
+import '../../shared/widgets/boletoList/boletoListController.dart';
 import '../login/loginController.dart';
 
 class Home extends StatefulWidget {
@@ -21,6 +23,7 @@ class _HomeState extends State<Home> {
   final auth = AuthController();
   final controller = HomeController();
   final loginController = LoginController();
+  final boletoController = BoletoListController();
   final pages = [
     BoletoPage(
       key: UniqueKey(),
@@ -103,7 +106,11 @@ class _HomeState extends State<Home> {
           )),
         ),
       ),
-      body: pages[controller.currentPage],
+      body: controller.currentPage == 0
+          ? ValueListenableBuilder<List<BoletoModel>>(
+              valueListenable: boletoController.boletosNotifier,
+              builder: (_, boletos, __) => BoletoPage())
+          : ResumePage(),
 
       //Barra de navegação inferior
       //PADDING serve para adicionar espaçamento entre CONTAINERS
@@ -118,8 +125,9 @@ class _HomeState extends State<Home> {
             //Botao para navegar utilizando ICONES e PRESSIONAR
             IconButton(
                 onPressed: () {
-                  controller.setPage(0);
-                  setState(() {});
+                  setState(() {
+                    controller.setPage(0);
+                  });
                 },
                 icon: Icon(
                   Icons.home,
@@ -131,6 +139,7 @@ class _HomeState extends State<Home> {
             GestureDetector(
               onTap: () async {
                 await Navigator.pushNamed(context, "/barCodeScanner");
+                setState(() {});
               },
               child: Container(
                 width: size.width * 0.18,
@@ -148,8 +157,9 @@ class _HomeState extends State<Home> {
             //Botao para navegar entre as telas
             IconButton(
                 onPressed: () {
-                  controller.setPage(1);
-                  setState(() {});
+                  setState(() {
+                    controller.setPage(1);
+                  });
                 },
                 icon: Icon(
                   Icons.description_outlined,

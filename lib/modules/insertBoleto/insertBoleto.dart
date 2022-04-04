@@ -3,21 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:payflow_2/modules/insertBoleto/insertBoletoController.dart';
+import 'package:payflow_2/shared/Methods/recoveryLogin.dart';
 import 'package:payflow_2/shared/widgets/inputBoleto/inputBoleto.dart';
 import 'package:payflow_2/shared/widgets/setLabelButtons/setLabelButtons.dart';
-
 import '../../shared/themes/appColor.dart';
 import '../../shared/themes/textStyles.dart';
 
 class InsertBoleto extends StatefulWidget {
   final String? barcode;
-  const InsertBoleto({Key? key, this.barcode}) : super(key: key);
+  final String? nome;
+  final String? vencimento;
+  final String? valor;
+  final bool? edit;
+  const InsertBoleto(
+      {Key? key,
+      this.barcode,
+      this.nome,
+      this.vencimento,
+      this.valor,
+      this.edit})
+      : super(key: key);
 
   @override
   State<InsertBoleto> createState() => _InsertBoletoState();
 }
 
 class _InsertBoletoState extends State<InsertBoleto> {
+  final recoverUser = RecoveryLogin();
   final controller = InsertBoletoController();
 
   final moneyValidator =
@@ -26,11 +38,19 @@ class _InsertBoletoState extends State<InsertBoleto> {
   final dateValidator = MaskedTextController(mask: "00/00/0000");
 
   final barcodeValidator = TextEditingController();
+  final nomeValidator = TextEditingController();
 
   @override
   void initState() {
     if (widget.barcode != null) {
       barcodeValidator.text = widget.barcode!;
+    }
+    if (widget.nome != null &&
+        widget.valor != null &&
+        widget.vencimento != null) {
+      dateValidator.text = widget.vencimento!;
+      moneyValidator.text = widget.valor!;
+      nomeValidator.text = widget.nome!;
     }
     super.initState();
   }
@@ -66,6 +86,7 @@ class _InsertBoletoState extends State<InsertBoleto> {
                   child: Column(
                     children: [
                       InputBoleto(
+                        controller: nomeValidator,
                         placeHolder: "Nome do Boleto",
                         icon: Icons.description_outlined,
                         validator: controller.validateName,
@@ -83,6 +104,7 @@ class _InsertBoletoState extends State<InsertBoleto> {
                         },
                       ),
                       InputBoleto(
+                        isNumber: true,
                         controller: moneyValidator,
                         placeHolder: "Valor",
                         validator: (_) => controller
@@ -110,7 +132,7 @@ class _InsertBoletoState extends State<InsertBoleto> {
       ),
       bottomNavigationBar: SetLabelButtons(
           primary: "Cancelar",
-          secundary: "Cadastrar",
+          secundary: widget.edit == false ? "Cadastrar" : "Salvar",
           primaryOnPressed: () {
             Navigator.pop(context);
           },
@@ -144,7 +166,9 @@ class _InsertBoletoState extends State<InsertBoleto> {
               backgroundColor: AppColor.background,
               autoCloseDuration: Duration(seconds: 5),
             );
-            Navigator.pop(context);
+
+            final user = await recoverUser.recoveryUser(context);
+            Navigator.pushReplacementNamed(context, "/home", arguments: user);
           }),
     );
   }
