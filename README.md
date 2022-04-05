@@ -2,7 +2,7 @@
   <img src="assets/images/logofull.png" />
 </p>
 
-<h1> --PAYFLOW--</h1>
+<h1>PAYFLOW</h1>
 
 <p>Payflow é um app de cadastro, edição e controle de boletos, onde você tem o total controle com os seus boletos, podendo escanea-lo e cadastrar dentro do app e tendo gráficos mostrandos seus boletos cadastrados.</p>
 
