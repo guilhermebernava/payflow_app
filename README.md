@@ -35,7 +35,7 @@
 <br>
 <br>
 
-<h1 align="center" > 🧪 Tecnologias Utilizadas </h1>
+<h1 align="center" > 🧪 Tecnologias Utilizadas 🧪</h1>
 
 * FLUTTER
 * FIREBASE
