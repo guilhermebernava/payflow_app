@@ -7,25 +7,25 @@
 Payflow é um app de cadastro, edição e controle de boletos.
 <br>
 <p align="center">
-  <img src="assets/images/1.png" />
+  <img src="assets/images/1.jpg" />
 </p>
 <br>
 
 <br>
 <p align="center">
-  <img src="assets/images/2.png" />
+  <img src="assets/images/2.jpg" />
 </p>
 <br>
 
 <br>
 <p align="center">
-  <img src="assets/images/3.png" />
+  <img src="assets/images/3.jpg" />
 </p>
 <br>
 
 <br>
 <p align="center">
-  <img src="assets/images/4.png" />
+  <img src="assets/images/4.jpg" />
 </p>
 <br>
 <br>
